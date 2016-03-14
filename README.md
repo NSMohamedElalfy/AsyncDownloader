@@ -22,12 +22,15 @@ lazy var downloader : AsyncDownloader = {
 downloader.download(photo.remoteURL, onCompletion: { (result:Results) -> () in
             switch result{
                 case let .Success(response):
+                // do what you want with the response object :)
                     let image = response.getUIImage()!
+                    // don't forget to update UI in the Main Queue ;)
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                         self.photoView.image = image
                         self.progressView.hidden = true
                 })
                 case let .Failure(error):
+                // handle errors :(
                     print("error : \(error.localizedDescription)")
                 }
             }, onProgress: { (progress:Float) -> () in
