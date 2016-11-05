@@ -33,7 +33,7 @@ class AsyncDownloaderTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
         let expectation = self.expectation(description: "asynchronous request")
-        self.vc.downloader.download("https://pixabay.com/api/", parameters: ["key":"3644469-0fdfa9298029a80a49e59659a",
+        AsyncDownloader.shared.download("https://pixabay.com/api/", parameters: ["key":"3644469-0fdfa9298029a80a49e59659a",
                                                                              "q" : "Paris",
                                                                              "lang" : "en",
                                                                              "image_type" : "all",
@@ -44,7 +44,7 @@ class AsyncDownloaderTests: XCTestCase {
                                                                                     if let json = response.getJSON() {
                                                                                         let hits = json["hits"] as! [[String:AnyObject]]
                                                                                         let samplePhoto = Photo(dictionary: hits[3])
-                                                                                        self.vc.downloader.download(samplePhoto.previewURL, onCompletion: { (r:Results) in
+                                                                                        AsyncDownloader.shared.download(samplePhoto.previewURL, onCompletion: { (r:Results) in
                                                                                             switch r {
                                                                                             case let .success(response):
                                                                                                 XCTAssertNotNil(response.getUIImage(), "downloader failed to get UIImage data")

@@ -30,7 +30,7 @@ class MainCollectionViewController: UICollectionViewController {
         }
         collectionView!.contentInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         
-        self.fetchData(keyword: "malaysia")
+        self.fetchData(keyword: "blue moon")
     }
     
     
